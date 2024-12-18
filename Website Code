@@ -1,0 +1,246 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Weather info page</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {  
+            padding-top: 70px; /*space for fixed navbar */
+        }  
+        /*adding hover effects to search button*/
+        .search-btn {  
+            transition: background-color 0.3s, transform 0.3s;  
+        }  
+        .search-btn:hover {  
+            background-color: #0056b3; /* Darker shade of blue */  
+            transform: scale(1.05);  
+        }   
+        /*styling the weather display box*/
+        #weatherResult {
+            background-color: azure;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none; /*initially hidden*/
+        }
+
+        .weather-icon {  
+            width: 50px;  
+        }  
+
+        .error-message {  
+            color: red;  
+        } 
+
+        .searchContainer{
+            max-width: 600px;
+            margin: 0 auto; /*Center align the search input */
+            margin-top: 20px;
+            height: 20vh;
+        }
+
+
+
+
+         
+    </style> 
+    </head>
+    <body>
+        <header>
+            <!--Using Bootstrap to fix the NavBar-->
+            <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+                <div class="container">
+                    <!--Hamburger display for small screen-->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> 
+                    <a class="navbar-brand" href="#">Weather Web</a>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">  
+                            <li class="nav-item">  
+                                <a class="nav-link scroll" href="#sec1">Search</a>  
+                            </li>  
+                            <li class="nav-item">  
+                                <a class="nav-link scroll" href="#sec2">Weather Details</a>  
+                            </li>  
+                            <li class="nav-item">  
+                                <a class="nav-link scroll" href="#sec3">About</a>  
+                            </li>  
+                            <li class="nav-item">  
+                                <a class="nav-link scroll" href="#sec4">Footer</a>  
+                            </li>  
+                        </ul>
+                    </div>         
+                </div>
+            </nav>
+        </header>
+        <!--Centred Search Bar-->
+        <section id="sec1" style="height: 20vh; background-color: white;">
+            <div class="searchContainer" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <form id="weatherForm" style="display: flex; align-items: center;">
+                    <input type="text" id="cityName" placeholder="Enter a city name" required>
+                    <button type="submit" class="search-btn" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">SEARCH</button>
+                </form>
+                <div id="error-message" style="display: none;"></div> 
+            </div>
+        </section>
+
+        <section id="sec2" style="background-color: white; padding: 70px" class = "shadow-effect" >  
+            <div id="weatherResult" >  
+                <h3 id="weatherResultHeading" class="text-center">Weather Results</h3>  
+                <p id="city" class="text-center"></p>  
+                <p id="date" class="text-center"></p>  
+                <p>Temperature: <span id="temperature"></span>°C</p>  
+                <p>Humidity: <span id="humidity"></span>%</p>  
+                <p>Wind Speed: <span id="windSpeed"></span> km/h</p>  
+                <p>Pressure: <span id="pressure"></span> mb</p>  
+                <p>Condition: <span id="weatherDescription"></span></p>  
+                <img id="weatherIcon" class="weather-icon" src="" alt="Weather condition icon" aria-hidden="false">  
+            </div>  
+        </section>
+
+        <section id="sec3" style="background-color: white; padding: 70px;" class = "shadow-effect">
+            <div class="container text-center">  
+                <h2>About This App</h2>  
+                <p>This weather application allows you to search for current weather conditions in any city.</p>  
+                <img src="https://cdn-icons-png.flaticon.com/512/7213/7213255.png" alt="Weather and tech 😌">  
+            </div>  
+        </section>
+
+        <section id="sec4" style="padding-top: 600px; background-color: white;">
+            <div class="container text-center">  
+                <div class="row">  
+                    <div class="col-md-6">  
+                        <p>&copy; 2024 Weather Dashboard | All rights reserved</p>  
+                    </div>  
+                    <div class="col-md-6">  
+                        <ul class="list-unstyled">  
+                            <li>  
+                                <a href="https://github.com/Megha06-byte" target="_blank">GitHub</a> |  
+                                <a href="https://www.linkedin.com/in/sounika-mandal-357806261/?originalSubdomain=in" target="_blank">LinkedIn</a>  
+                            </li>  
+                            <li>  
+                                <a href="terms.html" target="_blank">Terms and Conditions</a> |  
+                                <a href="privacy.html" target="_blank">Privacy Policy</a>  
+                            </li>  
+                        </ul>  
+                    </div>  
+                </div>  
+            </div> 
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>  
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+        <script>
+
+        </script>
+
+        
+    </body>
+    <script>
+        let anchorList = document.querySelectorAll('a[href^="#"]');
+        // Smooth scroll for navigation links
+        anchorList.forEach(link => {  
+            link.addEventListener('click', function(e) {  
+                e.preventDefault();  
+                let destination = document.querySelector(this.hash);  
+                if (destination) {  
+                    destination.scrollIntoView({ behavior: 'smooth' });  
+                }  
+            });  
+        }); 
+        // Weather fetching logic
+        document.getElementById('weatherForm').addEventListener('submit', function(e) {  
+            e.preventDefault(); // Prevent the default form submission  
+            const city = document.getElementById('cityName').value;  
+            const apiKey = 'bf6bf49a7140430992150003241212'; // Your API Key  
+            const URL = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;  
+
+            fetch(URL)  
+                .then(response => {  
+                    if (!response.ok) {  
+                        throw new Error('City not found');  
+                    }  
+                    return response.json(); // Parse the response as JSON  
+                })  
+                .then(data => {  
+                    // Extract weather data  
+                    const dateTime = data.location.localtime;  
+                    const [date, time] = dateTime.split(' ');  
+                    const temperature = data.current.temp_c;  
+                    const weatherDescription = data.current.condition.text;  
+                    const conditionIcon = data.current.condition.icon;  
+                    
+                    // Get the hour from the local time  
+                    const hour = parseInt(time.split(':')[0], 10); // Get the hour part and convert to integer  
+
+                    // Change the background color based on the hour  
+                    changeBackgroundColor(hour);  
+
+                    const humidity = data.current.humidity;  
+                    const windSpeed = data.current.wind_kph;  
+                    const pressure = data.current.pressure_mb;  
+
+                    // Update UI with weather data  
+                    document.getElementById('city').textContent = city;  
+                    document.getElementById('date').textContent = `Date: ${date}, Time: ${time}`;  
+                    document.getElementById('temperature').textContent = temperature;  
+                    document.getElementById('humidity').textContent = humidity;  
+                    document.getElementById('windSpeed').textContent = windSpeed;  
+                    document.getElementById('pressure').textContent = pressure;  
+                    document.getElementById('weatherDescription').textContent = weatherDescription;  
+                    document.getElementById('weatherIcon').src = conditionIcon.startsWith('//') ? `https:${conditionIcon}` : conditionIcon;  
+
+                    // Show the weather result section  
+                    document.getElementById('weatherResult').style.display = 'block';  //do not show until prompt
+                    document.getElementById('error-message').style.display = 'none'; // Hide error message if successful  
+                })  
+                .catch(error => {  
+                    document.getElementById('weatherResult').style.display = 'none'; // Hide weather results on error  
+                    const errorMessage = document.getElementById('error-message');  
+                    errorMessage.textContent = error.message;  
+                    errorMessage.style.display = 'block';  
+                });  
+        });  
+
+
+        function changeBackgroundColor(hour) {  
+            const body = document.body; // Reference to the body element  
+            const sec1 = document.getElementById('sec1'); // Reference to section 1  
+            const sec3 = document.getElementById('sec3'); // Reference to section 3
+            const sec2 = document.getElementById('sec2');  
+
+            if (hour >= 6 && hour < 12) {  
+                body.style.backgroundColor = '#d6eaf8'; // Morning light color  
+                sec1.style.backgroundColor = '#d6eaf8'; // Section 1 color  
+                sec3.style.backgroundColor = '#d6eaf8';
+                sec2.style.backgroundColor = '#d6eaf8';
+                sec4.style.backgroundColor = '#d6eaf8';
+            } else if (hour >= 12 && hour < 18) {  
+                body.style.backgroundColor = '#f4d03f'; // Afternoon light yellow color  
+                sec1.style.backgroundColor = '#f4d03f'; // Section 1 color  
+                sec3.style.backgroundColor = '#f4d03f';
+                sec2.style.backgroundColor = '#f4d03f';
+                sec4.style.backgroundColor = '#f4d03f';
+
+            } else if (hour >= 18 && hour < 21) {  
+                body.style.backgroundColor = '#1a5276'; // Evening light color  
+                sec1.style.backgroundColor = '#1a5276'; // Section 1 color  
+                sec3.style.backgroundColor = '#1a5276';
+                sec2.style.backgroundColor = '#1a5276'; 
+                sec4.style.backgroundColor = '#1a5276';
+            } else {  
+                body.style.backgroundColor = '#34495e'; // Night color  
+                sec1.style.backgroundColor = '#34495e'; // Section 1 color  
+                sec3.style.backgroundColor = '#34495e'; 
+                sec2.style.backgroundColor = '#34495e';
+                sec4.style.backgroundColor = '#34495e';
+            }  
+        } 
+    </script>  
+</body>  
+
+</html>
