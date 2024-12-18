@@ -159,7 +159,7 @@
             const apiKey = 'bf6bf49a7140430992150003241212'; // Your API Key  
             
 
-            fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`)  
+            fetch('http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes')  
                 .then(response => {  
                     if (!response.ok) {  
                         throw new Error('City not found');  
