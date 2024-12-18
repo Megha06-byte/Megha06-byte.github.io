@@ -157,7 +157,7 @@
             e.preventDefault(); // Prevent the default form submission  
             const city = document.getElementById('cityName').value;  
             const apiKey = 'bf6bf49a7140430992150003241212'; // Your API Key 
-            const apiUrl = 'https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes';  
+            const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;  
             
 
             fetch(apiUrl)  
